@@ -116,24 +116,40 @@ function install_robomongo {
 
   check_app_install "Robomongo"
   test_install "Robomongo"
-
-  add_app_to_dock "/Applications/Robomongo"
   log_finished "Robomongo"
 }
 
 function add_app_to_dock {
   # $1 needs to be full path to app.
   # restart_dock needs to be called once done.
-  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+
+  #defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+  local dockutil=~/Code/dockutil/scripts/dockutil
+  ${dockutil} --add "$1" --position end --no-restart
 }
 
 function restart_dock {
   killall Dock
 }
 
-install_slack
+install_chrome
+
+add_app_to_dock "/Applications/Mail.app"
+add_app_to_dock "/Applications/Contacts.app"
+add_app_to_dock "/Applications/Calendar.app"
+add_app_to_dock "/Applications/Notes.app"
+add_app_to_dock "/Applications/Reminders.app"
+
 install_atom
+
+add_app_to_dock "/Applications/Utilities/Terminal.app"
+
 install_intellij
 install_sourcetree
-install_chrome
+install_slack
+
+add_app_to_dock "/Applications/System Preferences.app"
+
 install_robomongo
+
+restart_dock

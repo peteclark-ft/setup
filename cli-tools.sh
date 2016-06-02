@@ -74,6 +74,12 @@ function install_dotfiles {
   log.info "Start a new terminal session to update your profile!"
 }
 
+function install_dockutil {
+  cd ~/Code
+  git clone git@github.com:kcrawford/dockutil.git
+  cd -
+}
+
 install_xcode_tools
 install_homebrew
 install_caskroom

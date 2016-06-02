@@ -21,6 +21,12 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # When performing a search, search the current folder by default
 # defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
+# Enable swipe up for expose on Dock items.
+defaults write com.apple.dock scroll-to-open -bool true
+
+# Show hidden apps as translucent in the dock
+# defaults write com.apple.dock showhidden -bool true
+
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 

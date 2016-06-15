@@ -77,6 +77,18 @@ function install_go {
   test_install "Go"
 }
 
+function install_java {
+  log_install "Java"
+  if java -version 2>&1 | grep 1.8; then
+    log_skipping "Java"
+    return
+  fi
+
+  brew cask install java
+  java -version
+  test_install "Java"
+}
+
 function install_terraform {
   log_install "Terraform"
   if terraform --version; then
@@ -100,4 +112,5 @@ install_homebrew
 install_caskroom
 # install_git ## Not required; part of xcode tools
 install_go
+install_java
 install_terraform

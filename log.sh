@@ -33,3 +33,19 @@ function log.info {
   echo "$(date)  INFO - $1"
   echo "$(date)  INFO - $1" >> ${log_file}
 }
+
+function test_install {
+  if [ $? -ne 0 ]; then
+    log_failed $1
+    exit 1
+  fi
+}
+
+function check_app_install {
+  local lines=$(ls -l /Applications/ | grep "$1" | wc -l)
+  if [ $lines -eq 1 ]; then
+    return 0
+  else
+    return 1
+  fi
+}

@@ -11,5 +11,3 @@ start_log
 ./mac-preferences.sh
 ./cli-tools.sh
 ./apps.sh
-
-# ./docker.sh

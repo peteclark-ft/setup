@@ -3,22 +3,6 @@
 cd $(dirname $0)
 . ./log.sh
 
-function test_install {
-  if [ $? -ne 0 ]; then
-    log_failed $1
-    exit 1
-  fi
-}
-
-function check_app_install {
-  local lines=$(ls -l /Applications/ | grep "$1" | wc -l)
-  if [ $lines -eq 1 ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-
 function install_slack {
   log_install "Slack"
   check_app_install "Slack"
@@ -119,6 +103,40 @@ function install_robomongo {
   log_finished "Robomongo"
 }
 
+function install_spotify {
+  log_install "Spotify"
+  check_app_install "Spotify"
+  if [ $? -eq 0 ]; then
+     log_skipping "Spotify"
+     return
+  fi
+
+  brew cask install spotify
+
+  check_app_install "Spotify"
+  test_install "Spotify"
+
+  add_app_to_dock "/Applications/Spotify"
+  log_finished "Spotify"
+}
+
+function install_docker {
+  log_install "Docker"
+  check_app_install "Docker"
+  if [ $? -eq 0 ]; then
+     log_skipping "Docker"
+     return
+  fi
+
+  brew cask install dockertoolbox
+
+  check_app_install "Docker"
+  test_install "Docker"
+  log_finished "Docker"
+}
+
+install_docker
+
 function add_app_to_dock {
   # $1 needs to be full path to app.
   # restart_dock needs to be called once done.
@@ -133,6 +151,8 @@ function restart_dock {
 }
 
 install_chrome
+
+install_spotify
 
 add_app_to_dock "/Applications/Mail.app"
 add_app_to_dock "/Applications/Contacts.app"

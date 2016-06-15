@@ -3,13 +3,6 @@
 cd $(dirname $0)
 . ./log.sh
 
-function test_install {
-  if [ $? -ne 0 ]; then
-    log_failed $1
-    exit 1
-  fi
-}
-
 function install_xcode_tools {
    log_install "XCode Developer Tools"
    xcode-select --install > /dev/null
@@ -21,9 +14,7 @@ function install_xcode_tools {
 
 function install_homebrew {
    log_install "Homebrew"
-
-   brew doctor
-   if [ $? -eq 0 ]; then
+   if brew doctor; then
       log_skipping "Homebrew"
       return
    fi
@@ -38,14 +29,15 @@ function install_homebrew {
 
 function install_caskroom {
   log_install "Homebrew Cask"
-  brew cask doctor
-  if [ $? -eq 0 ]; then
+  if brew cask doctor; then
      log_skipping "Homebrew Cask"
      return
   fi
 
   brew tap caskroom/cask
   mkdir /usr/local/Cellar
+  brew cleanup
+  brew cask cleanup
 
   brew tap caskroom/versions
 
@@ -55,8 +47,7 @@ function install_caskroom {
 
 function install_git {
   log_install "Git"
-  git --version
-  if [ $? -eq 0 ]; then
+  if git --version; then
      log_skipping "Git"
      return
   fi
@@ -74,6 +65,30 @@ function install_dotfiles {
   log.info "Start a new terminal session to update your profile!"
 }
 
+function install_go {
+  log_install "Go"
+  if go version; then
+    log_skipping "Go"
+    return
+  fi
+
+  brew cask install go
+  go version
+  test_install "Go"
+}
+
+function install_terraform {
+  log_install "Terraform"
+  if terraform --version; then
+    log_skipping "Terraform"
+    return
+  fi
+
+  brew cask install terraform
+  terraform --version
+  test_install "Terraform"
+}
+
 function install_dockutil {
   cd ~/Code
   git clone git@github.com:kcrawford/dockutil.git
@@ -83,4 +98,6 @@ function install_dockutil {
 install_xcode_tools
 install_homebrew
 install_caskroom
-install_git
+# install_git ## Not required; part of xcode tools
+install_go
+install_terraform

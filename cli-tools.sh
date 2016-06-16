@@ -14,6 +14,11 @@ function install_xcode_tools {
 
 function install_homebrew {
    log_install "Homebrew"
+
+   # brew doctor fails if not updated or pruned.. so do these early.
+   brew update
+   brew prune
+
    if brew doctor; then
       log_skipping "Homebrew"
       return
@@ -23,8 +28,6 @@ function install_homebrew {
 
    brew doctor
    test_install "Homebrew"
-
-   brew update
 }
 
 function install_caskroom {
@@ -58,6 +61,12 @@ function install_git {
 }
 
 function install_dotfiles {
+  log_install "Dotfiles"
+  if [[ -d ~/.dotfiles ]]; then
+    log_skipping "Dotfiles"
+    return
+  fi
+
   cd ~
   git clone git@github.com:peteclark-ft/dotfiles.git
   cd -
@@ -89,6 +98,18 @@ function install_java {
   test_install "Java"
 }
 
+function install_chef {
+  log_install "Chef"
+  if chef -v; then
+    log_skipping "Chef"
+    return
+  fi
+
+  brew cask install chefdk
+  chef -v
+  test_install "Chef"
+}
+
 function install_terraform {
   log_install "Terraform"
   if terraform --version; then
@@ -102,15 +123,25 @@ function install_terraform {
 }
 
 function install_dockutil {
+  log_install "Dockutil"
+  if [[ -d ~/Code/dockutil ]]; then
+    log_skipping "Dockutil"
+    return
+  fi
+
   cd ~/Code
   git clone git@github.com:kcrawford/dockutil.git
   cd -
 }
 
 install_xcode_tools
+install_dotfiles
+install_dockutil
+
 install_homebrew
 install_caskroom
 # install_git ## Not required; part of xcode tools
 install_go
 install_java
+install_chef
 install_terraform

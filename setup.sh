@@ -7,7 +7,6 @@ chmod 744 *.sh
 
 start_log
 
-./folders.sh
 ./mac-preferences.sh
 ./cli-tools.sh
 ./apps.sh

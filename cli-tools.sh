@@ -82,6 +82,14 @@ function install_go {
   fi
 
   brew cask install go
+
+  # The Go cask doesn't seem to symlink the binaries...
+  cd /usr/local/bin
+  ln -s /usr/local/go/bin/go
+  ln -s /usr/local/go/bin/godoc
+  ln -s /usr/local/go/bin/gofmt
+  cd -
+
   go version
   test_install "Go"
 }

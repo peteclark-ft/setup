@@ -3,15 +3,6 @@
 cd $(dirname $0)
 . ./log.sh
 
-function install_xcode_tools {
-   log_install "XCode Developer Tools"
-   xcode-select --install > /dev/null
-   if [ $? -eq 1 ]; then
-     log_skipping "XCode Developer Tools"
-   fi
-   log_finished "XCode Developer Tools"
-}
-
 function install_homebrew {
    log_install "Homebrew"
 
@@ -46,18 +37,6 @@ function install_caskroom {
 
   brew cask doctor
   test_install "Homebrew Cask"
-}
-
-function install_git {
-  log_install "Git"
-  if git --version; then
-     log_skipping "Git"
-     return
-  fi
-
-  brew install git
-  git --version
-  test_install "Git"
 }
 
 function install_dotfiles {
@@ -142,13 +121,12 @@ function install_dockutil {
   cd -
 }
 
-install_xcode_tools
 install_dotfiles
 install_dockutil
 
 install_homebrew
 install_caskroom
-# install_git ## Not required; part of xcode tools
+
 install_go
 install_java
 install_chef

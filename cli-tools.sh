@@ -48,6 +48,7 @@ function install_dotfiles {
 
   cd ~
   git clone git@github.com:peteclark-ft/dotfiles.git
+  mv dotfiles .dotfiles
   cd -
   cp .bash_profile ~
   log.info "Start a new terminal session to update your profile!"

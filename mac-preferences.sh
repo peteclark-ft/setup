@@ -43,6 +43,6 @@ function run_preferences {
 }
 
 # If this preference isn't set, re-run everything
-if [[ $(defaults read com.apple.finder ShowStatusBar) -eq 0 ]]; then
+if [[ $(defaults read NSGlobalDomain com.apple.swipescrolldirection) -eq 1 ]]; then
   run_preferences
 fi

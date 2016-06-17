@@ -3,6 +3,8 @@
 cd $(dirname $0)
 . ./log.sh
 
+dockutil=~/Code/dockutil/scripts/dockutil
+
 function install_slack {
   log_install "Slack"
   check_app_install "Slack"
@@ -15,8 +17,6 @@ function install_slack {
 
   check_app_install "Slack"
   test_install "Slack"
-
-  add_app_to_dock "/Applications/Slack"
   log_finished "Slack"
 }
 
@@ -32,8 +32,6 @@ function install_atom {
 
   check_app_install "Atom"
   test_install "Atom"
-
-  add_app_to_dock "/Applications/Atom"
   log_finished "Atom"
 }
 
@@ -49,8 +47,6 @@ function install_intellij {
 
   check_app_install "IntelliJ IDEA CE"
   test_install "IntelliJ IDEA CE"
-
-  add_app_to_dock "/Applications/\"IntelliJ IDEA CE\""
   log_finished "IntelliJ IDEA CE"
 }
 
@@ -66,8 +62,6 @@ function install_sourcetree {
 
   check_app_install "SourceTree"
   test_install "SourceTree"
-
-  add_app_to_dock "/Applications/SourceTree"
   log_finished "SourceTree"
 }
 
@@ -83,8 +77,6 @@ function install_chrome {
 
   check_app_install "Google Chrome"
   test_install "Google Chrome"
-
-  add_app_to_dock "/Applications/\"Google Chrome\""
   log_finished "Google Chrome"
 }
 
@@ -116,7 +108,6 @@ function install_spotify {
   check_app_install "Spotify"
   test_install "Spotify"
 
-  add_app_to_dock "/Applications/Spotify"
   log_finished "Spotify"
 }
 
@@ -135,24 +126,27 @@ function install_docker {
   log_finished "Docker"
 }
 
-install_docker
-
 function add_app_to_dock {
   # $1 needs to be full path to app.
   # restart_dock needs to be called once done.
-
-  #defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-  local dockutil=~/Code/dockutil/scripts/dockutil
   ${dockutil} --add "$1" --position end --no-restart
+}
+
+function clear_dock {
+   ${dockutil} --remove all --no-restart
 }
 
 function restart_dock {
   killall Dock
 }
 
+clear_dock
+
 install_chrome
+add_app_to_dock "/Applications/Google Chrome.app"
 
 install_spotify
+add_app_to_dock "/Applications/Spotify.app"
 
 add_app_to_dock "/Applications/Mail.app"
 add_app_to_dock "/Applications/Contacts.app"
@@ -161,15 +155,28 @@ add_app_to_dock "/Applications/Notes.app"
 add_app_to_dock "/Applications/Reminders.app"
 
 install_atom
+add_app_to_dock "/Applications/Atom.app"
 
 add_app_to_dock "/Applications/Utilities/Terminal.app"
 
 install_intellij
+add_app_to_dock "/Applications/IntelliJ IDEA CE.app"
+
 install_sourcetree
+add_app_to_dock "/Applications/SourceTree.app"
+
 install_slack
+add_app_to_dock "/Applications/Slack.app"
 
 add_app_to_dock "/Applications/System Preferences.app"
 
+add_app_to_dock "$HOME/Downloads"
+add_app_to_dock "$HOME/Documents"
+add_app_to_dock "/Applications"
+
 install_robomongo
+install_docker
 
 restart_dock
+
+unset dockutil

@@ -48,6 +48,11 @@ cookbook_file "#{node[:user_home]}/.hgignore_global" do
   mode '0644'
 end
 
+cookbook_file "#{node[:user_home]}/.ft-api-key" do
+  source '.ft-api-key'
+  mode '0644'
+end
+
 cookbook_file "#{node[:user_home]}/Code/go/utils/run-blog-finder.sh" do
   source 'go-utils/run-blog-finder.sh'
   mode '0744'

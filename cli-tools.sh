@@ -158,3 +158,4 @@ install_chef
 install_terraform
 
 install_ngrok
+install_nodejs

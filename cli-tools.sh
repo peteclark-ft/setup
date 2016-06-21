@@ -110,6 +110,30 @@ function install_terraform {
   test_install "Terraform"
 }
 
+function install_ngrok {
+  log_install "Ngrok"
+  if ngrok version; then
+    log_skipping "Ngrok"
+    return
+  fi
+
+  brew cask install ngrok
+  ngrok version
+  test_install "Ngrok"
+}
+
+function install_nodejs {
+  log_install "NodeJS"
+  if node -v; then
+    log_skipping "NodeJS"
+    return
+  fi
+
+  brew install nodejs
+  node -v
+  test_install "NodeJS"
+}
+
 function install_dockutil {
   log_install "Dockutil"
   if [[ -d ~/Code/dockutil ]]; then
@@ -132,3 +156,5 @@ install_go
 install_java
 install_chef
 install_terraform
+
+install_ngrok

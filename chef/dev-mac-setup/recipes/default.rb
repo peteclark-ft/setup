@@ -49,7 +49,12 @@ cookbook_file "#{node[:user_home]}/.hgignore_global" do
 end
 
 cookbook_file "#{node[:user_home]}/.ft-api-key" do
-  source '.ft-api-key'
+  source 'gen-utils/.ft-api-key'
+  mode '0644'
+end
+
+cookbook_file "#{node[:user_home]}/.muttrc" do
+  source '.muttrc'
   mode '0644'
 end
 

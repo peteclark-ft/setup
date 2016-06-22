@@ -134,6 +134,18 @@ function install_nodejs {
   test_install "NodeJS"
 }
 
+function install_mutt {
+  log_install "Mutt"
+  if mutt -v; then
+    log_skipping "Mutt"
+    return
+  fi
+
+  brew install mutt
+  mutt -v
+  test_install "Mutt"
+}
+
 function install_dockutil {
   log_install "Dockutil"
   if [[ -d ~/Code/dockutil ]]; then

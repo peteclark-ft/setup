@@ -2,7 +2,7 @@
 
 function run_preferences {
   ssh-add -K
-  
+
   # Automatically quit printer app once the print jobs complete
   defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
@@ -35,6 +35,10 @@ function run_preferences {
 
   # Set the icon size of Dock items to 56 pixels
   defaults write com.apple.dock tilesize -int 56
+
+  # Setup top-right hot corner to mission control
+  defaults write com.apple.dock wvous-tr-corner -int 2
+  defaults write com.apple.dock wvous-tr-modifier -int 0
 
   # Show the ~/Library folder
   chflags nohidden ~/Library

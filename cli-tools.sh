@@ -146,6 +146,18 @@ function install_mutt {
   test_install "Mutt"
 }
 
+function install_jq {
+  log_install "JQ"
+  if jq --version; then
+    log_skipping "JQ"
+    return
+  fi
+
+  brew install jq
+  jq --version
+  test_install "JQ"
+}
+
 function install_dockutil {
   log_install "Dockutil"
   if [[ -d ~/Code/dockutil ]]; then
@@ -170,5 +182,6 @@ install_chef
 install_terraform
 
 install_ngrok
+install_jq
 install_nodejs
 install_mutt

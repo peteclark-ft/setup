@@ -132,6 +132,10 @@ function add_app_to_dock {
   ${dockutil} --add "$1" --position end --no-restart
 }
 
+function add_folder_to_dock {
+  ${dockutil} --add "$1" --position end --no-restart --view grid --sort name
+}
+
 function clear_dock {
    ${dockutil} --remove all --no-restart
 }
@@ -170,9 +174,9 @@ add_app_to_dock "/Applications/Slack.app"
 
 add_app_to_dock "/Applications/System Preferences.app"
 
-add_app_to_dock "$HOME/Downloads"
-add_app_to_dock "$HOME/Documents"
-add_app_to_dock "/Applications"
+add_folder_to_dock "$HOME/Downloads"
+add_folder_to_dock "$HOME/Documents"
+add_folder_to_dock "/Applications"
 
 install_robomongo
 install_docker

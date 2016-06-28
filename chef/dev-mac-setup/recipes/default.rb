@@ -76,7 +76,21 @@ end
 cookbook_file "#{node[:user_home]}/.muttrc" do
   owner node[:user_id]
   group node[:group_id]
-  source '.muttrc'
+  source 'mutt/.muttrc'
+  mode '0644'
+end
+
+cookbook_file "#{node[:user_home]}/.muttrc-icloud" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mutt/.muttrc-icloud'
+  mode '0644'
+end
+
+cookbook_file "#{node[:user_home]}/.muttrc-hotmail" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mutt/.muttrc-hotmail'
   mode '0644'
 end
 
@@ -92,9 +106,4 @@ cookbook_file "#{node[:user_home]}/Code/go/utils/uuids.txt" do
   group node[:group_id]
   source 'go-utils/uuids.txt'
   mode '0644'
-end
-
-bash 'run_setup' do
-  cwd "#{node[:user_home]}/Code/setup"
-  code './setup.sh'
 end

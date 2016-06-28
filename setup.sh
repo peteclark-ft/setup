@@ -7,6 +7,10 @@ chmod 744 *.sh
 
 start_log
 
+./pre-chef.sh
+
+sudo chef-client -r dev-mac-setup
+
 ./mac-preferences.sh
 ./cli-tools.sh
 ./apps.sh

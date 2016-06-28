@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd $(dirname $0)
+
+. ./log.sh
+
 function run_preferences {
   ssh-add -K
 
@@ -49,6 +53,8 @@ function run_preferences {
 }
 
 # If this preference isn't set, re-run everything
-if [[ $(defaults read NSGlobalDomain com.apple.swipescrolldirection) -eq 1 ]]; then
+if [[ $(defaults read | grep "com.apple.swipescrolldirection" | wc -l) -eq 0 ]] || [[ $(defaults read NSGlobalDomain com.apple.swipescrolldirection) -eq 1 ]]; then
   run_preferences
+else
+  log.info "Preferences appear to be correct! Skipping them."
 fi

@@ -133,7 +133,7 @@ function add_app_to_dock {
 }
 
 function add_folder_to_dock {
-  ${dockutil} --add "$1" --position end --no-restart --view grid --sort name
+  ${dockutil} --add "$1" --position end --no-restart --view grid --sort name --display stack
 }
 
 function clear_dock {

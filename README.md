@@ -6,10 +6,15 @@ Scripts to setup a new Mac from scratch.
 
 It installs:
 
-* XCode Dev Tools
 * Homebrew
 * Homebrew Cask
-* Git - via homebrew
+* Chef (which it then uses to manage config files)
+* Java
+* Go
+* NGrok
+* JQ
+* Mutt
+* Terraform
 * DockUtil (cli for managing dock icons)
 * Docker Toolbox
 

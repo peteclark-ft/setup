@@ -122,6 +122,9 @@ function install_dockutil {
   cd -
 }
 
+#brew install bash
+brew install python
+
 install_dotfiles
 install_dockutil
 

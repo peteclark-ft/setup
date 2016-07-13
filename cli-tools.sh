@@ -125,6 +125,7 @@ function install_dockutil {
 #brew install bash
 brew install python
 brew install awscli
+brew install fleetctl
 
 install_dotfiles
 install_dockutil

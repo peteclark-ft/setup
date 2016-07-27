@@ -139,4 +139,6 @@ install_jq
 install_nodejs
 install_mutt
 
+brew install thefuck
+
 gem install foreman

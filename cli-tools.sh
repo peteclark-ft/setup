@@ -138,3 +138,5 @@ install_ngrok
 install_jq
 install_nodejs
 install_mutt
+
+gem install foreman

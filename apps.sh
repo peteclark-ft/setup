@@ -181,6 +181,8 @@ add_folder_to_dock "/Applications"
 install_robomongo
 install_docker
 
+brew cask install visual-studio-code
+
 restart_dock
 
 unset dockutil

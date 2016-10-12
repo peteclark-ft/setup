@@ -142,3 +142,5 @@ install_mutt
 brew install thefuck
 
 gem install foreman
+brew install spark
+brew install emojify

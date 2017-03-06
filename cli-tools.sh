@@ -144,3 +144,13 @@ brew install thefuck
 gem install foreman
 brew install spark
 brew install emojify
+
+brew install etcd
+brew install kubernetes-cli
+brew install iperf3
+brew install ledger
+brew install ffmpeg
+brew install coreutils
+brew install maven
+brew install slimerjs
+brew install phantomjs

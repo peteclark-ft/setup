@@ -17,6 +17,20 @@ cookbook_file "#{node[:user_home]}/.bash_profile" do
   mode '0644'
 end
 
+cookbook_file "#{node[:user_home]}/.dotfiles/.secret" do
+  owner node[:user_id]
+  group node[:group_id]
+  source '.secret'
+  mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/.dotfiles/.provisioner" do
+  owner node[:user_id]
+  group node[:group_id]
+  source '.provisioner'
+  mode '0600'
+end
+
 cookbook_file "#{node[:user_home]}/.ssh/config" do
   owner node[:user_id]
   group node[:group_id]
@@ -29,6 +43,20 @@ cookbook_file "#{node[:user_home]}/.ssh/id_rsa" do
   group node[:group_id]
   source 'ssh/id_rsa'
   mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/.ssh/id_rsa-personal" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'ssh/id_rsa-personal'
+  mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/.ssh/id_rsa-personal.pub" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'ssh/id_rsa-personal.pub'
+  mode '0644'
 end
 
 cookbook_file "#{node[:user_home]}/.ssh/id_rsa.pub" do
@@ -106,4 +134,32 @@ cookbook_file "#{node[:user_home]}/Code/go/utils/uuids.txt" do
   group node[:group_id]
   source 'go-utils/uuids.txt'
   mode '0644'
+end
+
+cookbook_file "#{node[:user_home]}/Library/Mail/V3/MailData/RulesActiveState.plist" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mail/RulesActiveState.plist'
+  mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/Library/Mail/V3/MailData/SyncedRules.plist" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mail/SyncedRules.plist'
+  mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/Library/Mail/V3/MailData/SyncedSmartMailboxes.plist" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mail/SyncedSmartMailboxes.plist'
+  mode '0600'
+end
+
+cookbook_file "#{node[:user_home]}/Library/Mail/V3/MailData/UnsyncedRules.plist" do
+  owner node[:user_id]
+  group node[:group_id]
+  source 'mail/UnsyncedRules.plist'
+  mode '0600'
 end

@@ -153,10 +153,7 @@ install_spotify
 add_app_to_dock "/Applications/Spotify.app"
 
 add_app_to_dock "/Applications/Mail.app"
-add_app_to_dock "/Applications/Contacts.app"
 add_app_to_dock "/Applications/Calendar.app"
-add_app_to_dock "/Applications/Notes.app"
-add_app_to_dock "/Applications/Reminders.app"
 
 install_atom
 add_app_to_dock "/Applications/Atom.app"
@@ -172,7 +169,7 @@ add_app_to_dock "/Applications/SourceTree.app"
 install_slack
 add_app_to_dock "/Applications/Slack.app"
 
-add_app_to_dock "/Applications/System Preferences.app"
+add_app_to_dock "/Applications/Utilities/Keychain Access.app"
 
 add_folder_to_dock "$HOME/Downloads"
 add_folder_to_dock "$HOME/Documents"
@@ -182,6 +179,13 @@ install_robomongo
 install_docker
 
 brew cask install visual-studio-code
+brew cask install graphiql
+brew cask install mactex
+brew cask install postman
+brew cask install lastpass
+brew cask install java
+brew cask install google-cloud-sdk
+brew cask install virtualbox
 
 restart_dock
 

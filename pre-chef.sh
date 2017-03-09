@@ -59,10 +59,12 @@ function update_ssh {
     return
   fi
 
-  cp ${volume}/ssh/id_rsa ~/.ssh
-  cp ${volume}/ssh/id_rsa.pub ~/.ssh
-  cp ${volume}/ssh/config ~/.ssh
-  cp ${volume}/ssh/known_hosts ~/.ssh
+  mkidr ~/.ssh
+
+  cp ${volume}/ssh/id_rsa ~/.ssh/id_rsa
+  cp ${volume}/ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+  cp ${volume}/ssh/config ~/.ssh/config
+  cp ${volume}/ssh/known_hosts ~/.ssh/known_hosts
 
   chmod 400 ~/.ssh/id_rsa
   chmod 600 ~/.ssh/id_rsa.pub

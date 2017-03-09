@@ -119,7 +119,7 @@ function install_docker {
      return
   fi
 
-  brew cask install dockertoolbox
+  brew cask install docker-toolbox
 
   check_app_install "Docker"
   test_install "Docker"

@@ -59,7 +59,7 @@ function update_ssh {
     return
   fi
 
-  mkidr ~/.ssh
+  mkdir ~/.ssh
 
   cp ${volume}/ssh/id_rsa ~/.ssh/id_rsa
   cp ${volume}/ssh/id_rsa.pub ~/.ssh/id_rsa.pub

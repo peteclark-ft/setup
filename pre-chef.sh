@@ -80,7 +80,7 @@ function update_chef {
   sudo cp ${volume}/client.rb /etc/chef/
 
   mkdir ~/Code/setup/chef/dev-mac-setup/files/
-  cp -r "${volume}/Chef Files/*" ~/Code/setup/chef/dev-mac-setup/files/
+  cp -R "${volume}/Chef Files/*" ~/Code/setup/chef/dev-mac-setup/files/
 }
 
 install_homebrew

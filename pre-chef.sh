@@ -63,6 +63,10 @@ function update_ssh {
 
   cp ${volume}/ssh/id_rsa ~/.ssh/id_rsa
   cp ${volume}/ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+
+  cp ${volume}/ssh/id_rsa-personal ~/.ssh/id_rsa-personal
+  cp ${volume}/ssh/id_rsa-personal.pub ~/.ssh/id_rsa-personal.pub
+
   cp ${volume}/ssh/config ~/.ssh/config
   cp ${volume}/ssh/known_hosts ~/.ssh/known_hosts
 
